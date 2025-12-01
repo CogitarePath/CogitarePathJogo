@@ -14,9 +14,9 @@ public class SanityBar : MonoBehaviour
 
     public UnityEngine.UI.Slider SanitySlider;
 
-    public float MaxSanity, ActualSanity;
+    public float MaxSanity;
 
-    public Animator playeranimator;
+    public static float ActualSanity;
 
     private Color color;
 
@@ -67,3 +67,4 @@ public class SanityBar : MonoBehaviour
         SanitySlider.value = ActualSanity;
     }
 }
+
