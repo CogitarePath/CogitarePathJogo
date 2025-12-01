@@ -124,20 +124,20 @@ public class PlayerMove : MonoBehaviour
         moveDirection.y = 0;
         Vector3 move = moveDirection.normalized * moveSpeed;
 
-        if (IsGrounded) // Se estiver no ch„o, aplicar· uma leve forÁa vertical para mante-lo nele
+        if (IsGrounded) // Se estiver no ch√£o, aplicar√° uma leve for√ßa vertical para mante-lo nele
         {
             if (verticalVelocity < 0)
-                verticalVelocity = -2f; // fixa o player ao ch„o sem tremer
+                verticalVelocity = -2f; // fixa o player ao ch√£o sem tremer
         }
         else
         {
             verticalVelocity += -90;
         }
-        // AplicaÁ„o da gravidade, no caso, aplica uma forÁa vertical que antes era potencializada com o GravityStrength, mas foi mudado para testes
+        // Aplica√ß√£o da gravidade, no caso, aplica uma for√ßa vertical que antes era potencializada com o GravityStrength, mas foi mudado para testes
 
         Vector3 finalMove = move;
         finalMove.y = verticalVelocity;
-        // Aplica o movimento no eixo Y, no caso, faz a personagem ir atÈ o ch„o
+        // Aplica o movimento no eixo Y, no caso, faz a personagem ir at√© o ch√£o
 
         characterController.Move(finalMove * Time.deltaTime);
 
@@ -151,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             transform.forward = lookDirection;
         }
 
-        if (horizontalInput != 0 || verticalInput != 0) // Verifica se est· tendo inputs
+        if (horizontalInput != 0 || verticalInput != 0) // Verifica se est√° tendo inputs
         {
             UIcleanerScript.CleanInterface(PlayerCam, FreeLockCams, true, false);
             UIcleanerScript.ControlAnimations(animator, false, "Run", "Normal_Idle", "IdleLantern");
@@ -169,7 +169,7 @@ public class PlayerMove : MonoBehaviour
                 UIcleanerScript.ControlAnimations(animator, false, "Walk");
                 UIcleanerScript.ControlAnimations(animator, true, "WalkWithFlash");
             }
-            // Se a lanterna estiver desligada, roda o Walk normal, sen„o, roda o Walk com a lanterna
+            // Se a lanterna estiver desligada, roda o Walk normal, sen√£o, roda o Walk com a lanterna
 
             moveSpeed = 2 + MoveSpeedVar;
 
@@ -192,7 +192,7 @@ public class PlayerMove : MonoBehaviour
 
             }
 
-            // Se o jogador apertar o shift e a estamina for maior que 0, toca a animaÁ„o de corrida, aumenta a velocidade e diminui de forma din‚mica estamina
+            // Se o jogador apertar o shift e a estamina for maior que 0, toca a anima√ß√£o de corrida, aumenta a velocidade e diminui de forma din√¢mica estamina
 
             if (UnityEngine.Input.GetKey(KeyCode.C))
             {
@@ -215,7 +215,7 @@ public class PlayerMove : MonoBehaviour
 
             if (!FlashlightScript.isOn)
             {
-                //Debug.Log("Estado da animaÁ„o: Idle normal");
+                //Debug.Log("Estado da anima√ß√£o: Idle normal");
                 UIcleanerScript.ControlAnimations(animator, false, "Walk", "WalkWithFlash", "IdleLantern", "Run", "Crouch");
                 UIcleanerScript.ControlAnimations(animator, true, "Normal_Idle");
             }
@@ -224,13 +224,13 @@ public class PlayerMove : MonoBehaviour
                 UIcleanerScript.ControlAnimations(animator, false, "Walk", "WalkWithFlash", "Run", "Crouch", "Normal_Idle");
                 UIcleanerScript.ControlAnimations(animator, true, "IdleLantern");
 
-                //Debug.Log("Estado da animaÁ„o: Idle lanterna");
+                //Debug.Log("Estado da anima√ß√£o: Idle lanterna");
             }
             if (!SwitchtoFreeLock)
             {
                 WaitTimeRoutine = StartCoroutine(WaitTime());
             }
-            // Se n„o ter trocado as c‚meras para o modo livre, inicia a coroutina para contar o tempo
+            // Se n√£o ter trocado as c√¢meras para o modo livre, inicia a coroutina para contar o tempo
         }
     }
 
@@ -241,7 +241,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("Estado da Coroutine WaitTime: Rodando!");
         UIcleanerScript.CleanInterface(PlayerCam, FreeLockCams, false, true);
     }
-    // Espera 60 segundos que o jogador esteja AFK para trocar para as c‚meras livres
+    // Espera 60 segundos que o jogador esteja AFK para trocar para as c√¢meras livres
     private IEnumerator Resting(float DelayTime)
     {
         isResting = true;
@@ -252,7 +252,7 @@ public class PlayerMove : MonoBehaviour
         // Recupera a stamina gradualmente
         while (!IsRunning && ActualStamina < MaxStamina)
         {
-            ActualStamina += Time.deltaTime * 15f; // taxa de recuperaÁ„o
+            ActualStamina += Time.deltaTime * 15f; // taxa de recupera√ß√£o
             if (ActualStamina > MaxStamina)
                 ActualStamina = MaxStamina;
 
@@ -263,13 +263,14 @@ public class PlayerMove : MonoBehaviour
         isResting = false;
     }
 
-    // MÈtodo para resetar posiÁ„o do jogador ao morrer
+    // M√©todo para resetar posi√ß√£o do jogador ao morrer
     public void DeathReset()
     {
         characterController.enabled = false; // Desativa CharacterController para reposicionar
         transform.position = spawn.position;  // Move para ponto de spawn
         characterController.enabled = true;   // Reativa CharacterController
 
-        sanityBar.ActualSanity = sanityBar.MaxSanity;
+        SanityBar.ActualSanity = sanityBar.MaxSanity;
     }
+
 }
