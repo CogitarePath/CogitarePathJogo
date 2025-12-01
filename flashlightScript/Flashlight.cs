@@ -75,8 +75,8 @@ public class Flashlight : MonoBehaviour
                 UIcleanerScript.ControlAnimations(PlayerAnimator, true, "TakeLantern");
                 battery -= batteryUse;
                 flashlightIcon.value = battery;
-                sanityBar.ActualSanity = Mathf.Clamp(sanityBar.ActualSanity += 0.05f, 0f, 100f);
-                sanityBar.SanitySlider.value = sanityBar.ActualSanity;
+                SanityBar.ActualSanity = Mathf.Clamp(SanityBar.ActualSanity += 0.05f, 0f, 100f);
+                sanityBar.SanitySlider.value = SanityBar.ActualSanity;
             }
             else
             {
@@ -148,4 +148,5 @@ public class Flashlight : MonoBehaviour
         lightComponent.enabled = false;
     }
 }
+
 
